@@ -12,6 +12,11 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+
+#
+# The lib folder is pretty important, so we need to keep it. 
+#
+
 .Python
 build/
 develop-eggs/
@@ -19,7 +24,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
