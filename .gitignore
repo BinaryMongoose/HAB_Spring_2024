@@ -1,3 +1,8 @@
+# CircuitPython stuff
+boot_out.txt
+settings.toml
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
