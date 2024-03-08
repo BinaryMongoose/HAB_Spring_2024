@@ -19,4 +19,4 @@ led.value = False
 
 
 debugging = not switch.value
-# storage.remount("/", readonly=True)
+storage.remount("/", readonly=debugging)
