@@ -27,7 +27,8 @@ void setup() {
 
   // Write the header line:
   // Must be consistent with the order which we write the data. 
-  output_file.println("temp,hum,pressure,alt,gas_r");
+  output_file.println("brd_time,temp,hum,pressure,alt,gas_r");
+  output_file.flush();
 
   // Starting the BME 
   if (!bme.begin()) {
@@ -47,6 +48,7 @@ void loop() {
   // If we could get readings from BME && could write to file, 
   // write 1 line to output_file. 
   if (bme.performReading() && output_file) {
+    output_file.print(millis());  output_file.print(",");
     output_file.print(bme.temperature);  output_file.print(",");
     output_file.print(bme.humidity); output_file.print(",");
     output_file.print(bme.pressure); output_file.print(",");
@@ -59,5 +61,5 @@ void loop() {
   }
 
   // TODO: Wait for 10 seconds
-  delay(10); // <- Milliseconds
+  delay(TEN_SECONDS); // <- Milliseconds
 }
