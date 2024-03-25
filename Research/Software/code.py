@@ -38,6 +38,7 @@ Setting up all the sensors used:
  - MAX1704 (inbuilt)
 """
 
+# Setting up the SDC30
 scd = adafruit_scd30.SCD30(i2c)
 
 # Setting up accelerometer.
@@ -65,8 +66,8 @@ bme_temp, bme_gas, bme_humidity, bme_pressure, bme_altitude,\
 scd_CO2, scd_temp, scd_humidity,\
 max_voltage, max_percent, max_rate\n"
 
-with open(f"/sd/{file_name}.csv", "a") as sd, open(f"/{file_name}.csv", "a") as flash:
-    sd.write(header)
+with open("/sd/control.csv", "a") as sd, open(f"/{file_name}.csv", "a") as flash:
+    sd.write("scd_co2, scd_temp, scd_humidity")
     flash.write(header)
 
     for i in range(0, 10):
@@ -77,7 +78,12 @@ with open(f"/sd/{file_name}.csv", "a") as sd, open(f"/{file_name}.csv", "a") as 
         data = [time_now, x, y, z,                                                                        # ISM Stuff & Time
                 (bme680.temperature + temperature_offset), bme680.gas, bme680.humidity, bme680.pressure, bme680.altitude,  # BME Stuff
                 scd.CO2, scd.temperature, scd.relative_humidity,                                          # SCD Stuff
-                max17.cell_voltage, max17.cell_percent, max17.charge_rate]                                # MAX Stuff
+                max17.cell_voltage, max17.cell_percent, max17.charge_rate]
+
+        time.sleep(10)
+
+        # MAX Stuff
+        sd.write(f"{scd_co2},{} {}")
 
         for d in data:
             sd.write(f'{d},')
